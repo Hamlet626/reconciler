@@ -203,15 +203,18 @@ class Reconciler extends HookConsumerWidget {
         const Text('Description match        '),
         SizedBox(width:100,child:TextFormField(
           initialValue: days.value.toString(),
-          onChanged: (v)=>days.value=int.parse(v),)),
+          onChanged: (v)=>days.value=int.parse(v),
+          decoration: InputDecoration(labelText: 'Days difference'),
+        )),
 
+        SizedBox(width: 100,),
         FilledButton(onPressed: (){
           match(edited.value.where((e) => !e.matched&&e.left!=null).map((e) => e.left!).toList(),
               edited.value.where((e) => !e.matched&&e.right!=null).map((e) => e.right!).toList());
         }, child: Text('MATCH')),
         FilledButton(onPressed: (){
           edited.value=List.of(edited.value.map((e) => e.matched?(e..saved=true):e));
-        }, child: Text('SAVE'))
+        }, child: Text('SAVE Machted'))
       ],),
       FormBuilder(key: fk,
           child: Row(children: [
